@@ -27,5 +27,7 @@ class Particle {
 	float		mAgePer;
 	bool		mIsDead;
     
+    float       angle1;
+    
     std::vector <ci::Vec2f> coordinates;
 };

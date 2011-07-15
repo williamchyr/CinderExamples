@@ -19,13 +19,13 @@ void ParticleController::init() {
     
 }
 
-void ParticleController::update( const Perlin &perlin, const Channel32f &channel, const Vec2i &mouseLoc )
+void ParticleController::update( const Perlin &perlin, const Vec2i &mouseLoc )
 {
 
 	//coordinates.clear();
     
     for (int i = 0; i < mParticles.size(); i++ ) {
-		mParticles[i].update();
+		mParticles[i].update(perlin);
 		
 		coordinates[i] = mParticles[i].mLoc;
 		if (mParticles[i].mIsDead){
@@ -44,7 +44,7 @@ void ParticleController::draw()
 	}
 	 */
 	
-    glColor4f(1.0, 1.0, 0.0, 0.0 );
+    glColor4f( 1.0, 1.0, 0.0, mParticles[0].mAgePer );
     
 	for (int i = 0; i < mParticles.size(); i++ ) {
 		mParticles[i].draw();

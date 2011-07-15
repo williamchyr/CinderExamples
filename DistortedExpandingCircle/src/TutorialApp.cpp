@@ -28,9 +28,6 @@ class TutorialApp : public AppBasic {
 	void draw();
 	
 	Perlin mPerlin;
-
-	Channel32f mChannel;
-	gl::Texture	mTexture;
 	
 	Vec2i mMouseLoc;
 	Vec2f mMouseVel;
@@ -39,7 +36,6 @@ class TutorialApp : public AppBasic {
 	ParticleController mParticleController;
 	
 	bool mDrawParticles;
-	bool mDrawImage;
 	bool mSaveFrames;
     
     std::vector <ParticleController> multiLines;
@@ -48,25 +44,24 @@ class TutorialApp : public AppBasic {
 void TutorialApp::prepareSettings( Settings *settings )
 {
 	settings->setWindowSize( 800, 600 );
-	settings->setFrameRate( 60.0f );
+	settings->setFrameRate( 30.0f );
 }
 
 void TutorialApp::setup()
 {	
 	mPerlin = Perlin();
 	
-	Url url( "http://www.libcinder.org/media/tutorial/paris.jpg" );
-	mChannel = Channel32f( loadImage( loadUrl( url ) ) );
-	mTexture = mChannel;
+	//Url url( "http://www.libcinder.org/media/tutorial/paris.jpg" );
+	//mChannel = Channel32f( loadImage( loadUrl( url ) ) );
+	//mTexture = mChannel;
 
 	mMouseLoc = Vec2i( 0, 0 );
 	mMouseVel = Vec2f::zero();
 	mDrawParticles = true;
-	mDrawImage = false;
 	mIsPressed = false;
 	mSaveFrames = false;
     
-    
+    gl::enableAlphaBlending();   
 }
 
 
@@ -93,11 +88,7 @@ void TutorialApp::mouseDrag( MouseEvent event )
 
 void TutorialApp::keyDown( KeyEvent event )
 {
-	if( event.getChar() == '1' ){
-		mDrawImage = ! mDrawImage;
-	} else if( event.getChar() == '2' ){
-		mDrawParticles = ! mDrawParticles;
-	}
+
 	
 	if( event.getChar() == 's' ){
 		mSaveFrames = ! mSaveFrames;
@@ -106,7 +97,7 @@ void TutorialApp::keyDown( KeyEvent event )
 
 void TutorialApp::update()
 {
-	if( ! mChannel ) return;
+	
 	
 	if( mIsPressed ){
 		//mParticleController.addParticles( NUM_PARTICLES_TO_SPAWN, mMouseLoc, mMouseVel );
@@ -118,9 +109,9 @@ void TutorialApp::update()
         
         multiLines.push_back(sampleLine);
     }
-    
+
     for (int i = 0; i < multiLines.size(); i++) {
-        multiLines[i].update( mPerlin, mChannel, mMouseLoc );
+        multiLines[i].update( mPerlin, mMouseLoc );
         
         if (multiLines[i].dead) {
             multiLines.erase (multiLines.begin()+i);
@@ -135,12 +126,7 @@ void TutorialApp::update()
 void TutorialApp::draw()
 {	
 	gl::clear( Color( 0, 0, 0 ), true );
-	
-	if( mDrawImage ){
-		mTexture.enableAndBind();
-		gl::draw( mTexture, getWindowBounds() );
-	}
-	
+		
 	if( mDrawParticles ){
 		glDisable( GL_TEXTURE_2D );
 		//mParticleController.draw();

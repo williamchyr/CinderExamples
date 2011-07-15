@@ -9,7 +9,7 @@ class Particle {
  public:
 	Particle();
 	Particle( ci::Vec2f, ci::Vec2f );
-	void update();
+	void update(const ci::Perlin &perlin);
 	void draw();
 	
 	ci::Vec2f	mLoc;
