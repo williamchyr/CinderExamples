@@ -19,14 +19,14 @@ Particle::Particle( Vec2f loc, Vec2f vel )
 	mRadius			= 0.0f;
 	mScale			= 3.0f;
 	mAge			= 0;
-	mLifespan		= Rand::randInt( 50, 350 );
+	mLifespan		= 100;
 	mAgePer			= 1.0f;
 	mIsDead			= false;
     
     angle1 = 0;
 }	
 
-void Particle::update( const Perlin &perlin, const Channel32f &channel, const Vec2i &mouseLoc )
+void Particle::update()
 {	
 	
   // angle1 += M_PI/25;
@@ -60,13 +60,14 @@ void Particle::draw()
 {
 	gl::drawSolidCircle( mLoc, mRadius * mAgePer );
     
-    /*
+	/*
     coordinates.push_back(mLoc);
     
     for (int i = 0; i < coordinates.size()-1; i++) {
         gl::drawLine( coordinates[i], coordinates[i+1] );
     }
-     */
+	 */
+	
 }
 
 

@@ -5,6 +5,7 @@
 
 using namespace ci;
 using std::list;
+using std::vector;
 
 ParticleController::ParticleController()
 {
@@ -13,6 +14,7 @@ ParticleController::ParticleController()
 
 void ParticleController::update( const Perlin &perlin, const Channel32f &channel, const Vec2i &mouseLoc )
 {
+	/*
 	for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ) {
 		if( p->mIsDead ){
 			p = mParticles.erase( p );
@@ -21,16 +23,33 @@ void ParticleController::update( const Perlin &perlin, const Channel32f &channel
 			++p;
 		}
 	}
+	*/
+	
+	for (int i = 0; i < mParticles.size(); i++ ) {
+		mParticles[i].update();
+		
+		coordinates[i] = mParticles[i].mLoc;
+		if (mParticles[i].mIsDead){
+			//mParticles[i].clear();
+		}
+	}
+
 }
 
 void ParticleController::draw()
 {
-	for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ++p ){
+	/*
+	 for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ++p ){
 		p->draw();
+	}
+	 */
+	
+	for (int i = 0; i < mParticles.size(); i++ ) {
+		mParticles[i].draw();
 	}
     
     if (coordinates.size() > 1) {
-        for (int i = 0; i < coordinates.size()-2; i++ ) {
+        for (int i = 0; i < coordinates.size()-1; i++ ) {
             gl::drawLine(coordinates[i], coordinates[i+1]);
         }
     }

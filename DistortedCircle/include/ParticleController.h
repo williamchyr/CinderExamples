@@ -13,7 +13,7 @@ class ParticleController {
 	void addParticles( int amt, const ci::Vec2i &mouseLoc, const ci::Vec2f &mouseVel );
 	void removeParticles( int amt );
 	
-	std::list<Particle>	mParticles;
+	std::vector<Particle>	mParticles;
     
     std::vector<ci::Vec2f> coordinates;
     

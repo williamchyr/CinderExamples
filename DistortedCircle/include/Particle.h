@@ -9,7 +9,7 @@ class Particle {
  public:
 	Particle();
 	Particle( ci::Vec2f, ci::Vec2f );
-	void update( const ci::Perlin &perlin, const ci::Channel32f &channel, const ci::Vec2i &mouseLoc );
+	void update();
 	void draw();
 	
 	ci::Vec2f	mLoc;
