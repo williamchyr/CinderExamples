@@ -3865,7 +3865,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>332453502.53649598</real>
+		<real>332454354.60165203</real>
 		<string>{128, 1020}</string>
 		<string>{231, 0}</string>
 		<dict>
@@ -4741,7 +4741,7 @@
 				<integer>361</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>332453424.54854602</real>
+			<real>332454332.08063698</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -4752,7 +4752,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 4:10 PM</string>
+		<string>Today at 4:25 PM</string>
 		<integer>106</integer>
 		<dict>
 			<key>$class</key>
@@ -4761,7 +4761,12 @@
 				<integer>310</integer>
 			</dict>
 			<key>NS.objects</key>
-			<array/>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>3</integer>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -6645,7 +6650,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>332453502.539626</real>
+		<real>332454354.60407603</real>
 		<string>{128, 1020}</string>
 		<string>{231, 0}</string>
 		<string>Particle::Particle( Vec2f loc, Vec2f vel )</string>

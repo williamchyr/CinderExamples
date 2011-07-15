@@ -12,7 +12,7 @@ ParticleController::ParticleController()
     angle = 25;
 }
 
-void ParticleController::update( const Perlin &perlin, const Channel32f &channel, const Vec2i &mouseLoc )
+void ParticleController::update( const Perlin &perlin, const Vec2i &mouseLoc )
 {
 	/*
 	for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ) {

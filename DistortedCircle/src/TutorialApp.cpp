@@ -26,9 +26,6 @@ class TutorialApp : public AppBasic {
 	void draw();
 	
 	Perlin mPerlin;
-
-	Channel32f mChannel;
-	gl::Texture	mTexture;
 	
 	Vec2i mMouseLoc;
 	Vec2f mMouseVel;
@@ -51,10 +48,6 @@ void TutorialApp::setup()
 {	
 	mPerlin = Perlin();
 	
-	Url url( "http://www.libcinder.org/media/tutorial/paris.jpg" );
-	mChannel = Channel32f( loadImage( loadUrl( url ) ) );
-	mTexture = mChannel;
-
 	mMouseLoc = Vec2i( 0, 0 );
 	mMouseVel = Vec2f::zero();
 	mDrawParticles = true;
@@ -100,22 +93,16 @@ void TutorialApp::keyDown( KeyEvent event )
 
 void TutorialApp::update()
 {
-	if( ! mChannel ) return;
-	
-	if( mIsPressed )
+		if( mIsPressed )
 		mParticleController.addParticles( NUM_PARTICLES_TO_SPAWN, mMouseLoc, mMouseVel );
 	
-	mParticleController.update( mPerlin, mChannel, mMouseLoc );
+	mParticleController.update( mPerlin, mMouseLoc );
 }
 
 void TutorialApp::draw()
 {	
 	gl::clear( Color( 0, 0, 0 ), true );
 	
-	if( mDrawImage ){
-		mTexture.enableAndBind();
-		gl::draw( mTexture, getWindowBounds() );
-	}
 	
 	if( mDrawParticles ){
 		glDisable( GL_TEXTURE_2D );
