@@ -261,6 +261,98 @@ N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xc
 t1310703492
 s593076
 
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/include/Particle.h
+c000000004E210F8A000000000000025E
+t1310789514
+s606
+i"cinder/Channel.h"
+i"cinder/Vector.h"
+i"cinder/Color.h"
+i"cinder/Perlin.h"
+i<vector>
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/include/ParticleController.h
+c000000004E210F8A0000000000000219
+t1310789514
+s537
+i"cinder/Channel.h"
+i"Particle.h"
+i"cinder/Perlin.h"
+i<list>
+i<vector>
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/Particle.cpp
+c000000004E210F8A0000000000000682
+t1310789514
+s1666
+i"Particle.h"
+i"cinder/Rand.h"
+i"cinder/gl/gl.h"
+i"cinder/app/AppBasic.h"
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/ParticleController.cpp
+c000000004E210F8A0000000000000870
+t1310789514
+s2160
+i"cinder/app/AppBasic.h"
+i"cinder/Rand.h"
+i"cinder/Vector.h"
+i"ParticleController.h"
+i<vector>
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/TutorialApp.cpp
+c000000004E210F8A0000000000000C8F
+t1310789514
+s3215
+i"cinder/app/AppBasic.h"
+i"cinder/ImageIO.h"
+i"cinder/gl/Texture.h"
+i"cinder/Perlin.h"
+i"cinder/Channel.h"
+i"cinder/Vector.h"
+i"cinder/Utilities.h"
+i"ParticleController.h"
+i<vector>
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/Tutorial_Prefix.pch
+c000000004E210F8A0000000000000093
+t1310789514
+s147
+i<Cocoa/Cocoa.h>
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app
+t1310789514
+s102
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app/Contents/Info.plist
+t1310789514
+s1173
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app/Contents/MacOS/Tutorial
+t1310789514
+s5253040
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app/Contents/PkgInfo
+t1310789514
+s8
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/Particle.o
+t1310789514
+s463460
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/ParticleController.o
+t1310789514
+s508352
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/Tutorial.LinkFileList
+c000000004E210F8A00000000000001E1
+t1310789514
+s481
+
+N/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/TutorialApp.o
+t1310789514
+s593076
+
 N/Users/willychyr/Programming/cinder_0.8.2_mac/boost/boost/aligned_storage.hpp
 c000000004A68476000000000000010C9
 t1248348000
@@ -6620,13 +6712,17 @@ i<OpenGLES/ES1/gl.h>
 i<OpenGLES/ES1/glext.h>
 i<OpenGL/gl.h>
 
+N/var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-axqkjllhsazsjgdokpsflpuyvtic/Tutorial_Prefix.pch.gch
+t2
+s0
+
 N/var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-gwicigqyigsjlqdhjtlkmhmdhnwc/Tutorial_Prefix.pch.gch
 t1310703487
 s2515312
 
 NInfo.plist
-c000000004E1FBDE20000000000000348
-t1310703074
+c000000004E210F8A0000000000000348
+t1310789514
 s840
 
 CCheck dependencies
@@ -6646,6 +6742,9 @@ xc++
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@110"Compile /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/Particle.cpp332396937#332396941#0(0"0(0#0#102"/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/Particle.cpp8625645888#2033"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-generated-files.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-own-target-headers.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-all-target-headers.hmap -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-project-headers.hmap -F/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug -iquote../../../include -iquote../include -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/include -I../../../boost -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources/i386 -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources -include /var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-gwicigqyigsjlqdhjtlkmhmdhnwc/Tutorial_Prefix.pch -c /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/Particle.cpp -o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/Particle.o0#
 
+CCompileC build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/Particle.o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/Particle.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/ParticleController.o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/ParticleController.cpp normal i386 c++ com.apple.compilers.gcc.4_2
 s332397396.137322
 e332397399.841076
@@ -6658,6 +6757,9 @@ xi386
 xc++
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@120"Compile /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/ParticleController.cpp332397396#332397399#0(0"0(0#0#112"/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/ParticleController.cpp8637781984#2053"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-generated-files.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-own-target-headers.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-all-target-headers.hmap -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-project-headers.hmap -F/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug -iquote../../../include -iquote../include -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/include -I../../../boost -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources/i386 -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources -include /var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-gwicigqyigsjlqdhjtlkmhmdhnwc/Tutorial_Prefix.pch -c /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/ParticleController.cpp -o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/ParticleController.o0#
+
+CCompileC build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/ParticleController.o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/ParticleController.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+r0
 
 CCompileC build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/TutorialApp.o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/TutorialApp.cpp normal i386 c++ com.apple.compilers.gcc.4_2
 s332396287.814741
@@ -6672,6 +6774,9 @@ xc++
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@113"Compile /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/TutorialApp.cpp332396287#332396292#0(0"0(0#0#105"/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/TutorialApp.cpp8631794688#2039"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-generated-files.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-own-target-headers.hmap -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-all-target-headers.hmap -iquote /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Tutorial-project-headers.hmap -F/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug -iquote../../../include -iquote../include -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/include -I../../../boost -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources/i386 -I/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/DerivedSources -include /var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-gwicigqyigsjlqdhjtlkmhmdhnwc/Tutorial_Prefix.pch -c /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/../src/TutorialApp.cpp -o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/TutorialApp.o0#
 
+CCompileC build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/TutorialApp.o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/../src/TutorialApp.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+r0
+
 CLd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/MacOS/Tutorial normal i386
 s332397399.841361
 e332397401.025022
@@ -6682,6 +6787,9 @@ xnormal
 xi386
 lSLF07#2@136"Link /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/MacOS/Tutorial332397399#332397401#0(0"0(0#0#0"8640957248#980"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    setenv MACOSX_DEPLOYMENT_TARGET 10.5    /Developer/usr/bin/g++-4.2 -arch i386 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug -F/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug -filelist /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Tutorial.build/Debug/Tutorial.build/Objects-normal/i386/Tutorial.LinkFileList -mmacosx-version-min=10.5 ../../../lib/libcinder_d.a -lcurl -framework Cocoa -framework OpenGL -framework Carbon -framework CoreVideo -framework QTKit -framework QuickTime -framework Accelerate -framework AudioToolbox -framework AudioUnit -framework CoreAudio -o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/MacOS/Tutorial0#
 
+CLd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app/Contents/MacOS/Tutorial normal i386
+r0
+
 CProcessInfoPlistFile /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/Info.plist Info.plist
 s332396287.628541
 e332396287.633745
@@ -6690,6 +6798,12 @@ xProcessInfoPlistFile
 x/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/Info.plist
 xInfo.plist
 lSLF07#2@18"Process Info.plist332396287#332396287#0(0"0(0#0#93"/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/Info.plist8630891904#436"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    builtin-infoPlistUtility Info.plist -genpkginfo /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app/Contents/Info.plist0#
+
+CProcessInfoPlistFile /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app/Contents/Info.plist Info.plist
+r0
+
+CProcessPCH++ /var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-axqkjllhsazsjgdokpsflpuyvtic/Tutorial_Prefix.pch.gch Tutorial_Prefix.pch normal i386 c++ com.apple.compilers.gcc.4_2
+r0
 
 CProcessPCH++ /var/folders/IG/IGldUw1FEkOHevbbBTgkdk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Tutorial_Prefix-gwicigqyigsjlqdhjtlkmhmdhnwc/Tutorial_Prefix.pch.gch Tutorial_Prefix.pch normal i386 c++ com.apple.compilers.gcc.4_2
 s332396287.633865
@@ -6711,4 +6825,7 @@ r1
 xTouch
 x/Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app
 lSLF07#2@113"Touch /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app332397401#332397401#0(0"0(0#0#0"8641926176#220"    cd /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode    /usr/bin/touch -c /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/DistortedCircle/xcode/build/Debug/Tutorial.app0#
+
+CTouch /Users/willychyr/Programming/cinder_0.8.2_mac/CinderExamples/ShiftingCircle/xcode/build/Debug/Tutorial.app
+r0
 
