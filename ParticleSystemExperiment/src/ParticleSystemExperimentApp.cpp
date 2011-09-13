@@ -2,6 +2,7 @@
 #include "cinder/ImageIO.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Utilities.h"
+#include "cinder/Perlin.h"
 #include "ParticleController.h"
 
 #define NUM_PARTICLES_TO_SPAWN 25
@@ -26,6 +27,8 @@ class ParticleSystemExperimentApp : public AppBasic {
 	Vec2f mMouseVel;
     bool mIsPressed;
     
+    Perlin mPerlin;
+    
     ParticleController mParticleController;
     
     bool mSaveFrame;
@@ -43,6 +46,8 @@ void ParticleSystemExperimentApp::setup()
     gl::enableAlphaBlending();
     
     mIsPressed = false;
+    
+    mPerlin = Perlin();
 }
 
 void ParticleSystemExperimentApp::mouseDown( MouseEvent event )
@@ -80,7 +85,7 @@ void ParticleSystemExperimentApp::update()
     if( mIsPressed )
 		mParticleController.addParticles( NUM_PARTICLES_TO_SPAWN, mMouseLoc, mMouseVel );
 	
-	mParticleController.update();
+	mParticleController.update(mPerlin);
     
     if( mSaveFrame ){
 		writeImage( getHomeDirectory() + "image_" + toString( getElapsedFrames() ) + ".png", copyWindowSurface() );

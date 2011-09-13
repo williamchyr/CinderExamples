@@ -8,6 +8,7 @@
 
 #include "cinder/Vector.h"
 #include "cinder/Color.h"
+#include "cinder/Perlin.h"
 
 #include <vector>
 
@@ -19,7 +20,7 @@ class Particle {
     
     Particle();
     Particle( Vec2f loc, Vec2f vel);
-    void update();
+    void update(const Perlin &perlin);
     void draw();
     
     Vec2f mLoc;

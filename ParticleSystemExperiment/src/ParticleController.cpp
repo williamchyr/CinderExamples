@@ -11,6 +11,7 @@
 #include "cinder/Rand.h"
 #include "cinder/Vector.h"
 
+
 using namespace ci;
 using namespace ci::app;
 using std::list;
@@ -19,12 +20,12 @@ ParticleController::ParticleController()
 {
 }
 
-void ParticleController::update() {
+void ParticleController::update(const Perlin &perlin) {
     for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ) {
 		if( p->mIsDead ){
 			p = mParticles.erase( p );
 		} else {
-			p->update();
+			p->update(perlin);
 			++p;
 		}
 	}
@@ -38,7 +39,7 @@ void ParticleController::draw() {
     glBegin(GL_TRIANGLE_STRIP);
    
     for (list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ++p ) { 
-         glColor4f(0.0f, 1.0f - p->mYPercentage, 1.0f - p->mXPercentage, 1.0f - p->mAgePercentage);
+         glColor4f( sin( getElapsedSeconds() ), 1.0f - p->mYPercentage, 1.0f - p->mXPercentage, 1.0f - p->mAgePercentage);
         glVertex3f( p->mLoc.x, p->mLoc.y, 0.0f);
     }
     
