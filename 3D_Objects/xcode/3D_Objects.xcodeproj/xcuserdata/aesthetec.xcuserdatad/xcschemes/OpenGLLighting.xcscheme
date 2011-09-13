@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D1107260486CEB800E47090"
-               BuildableName = "OpenGLLighting.app"
+               BuildableName = "3D_Objects.app"
                BlueprintName = "3D_Objects"
                ReferencedContainer = "container:3D_Objects.xcodeproj">
             </BuildableReference>
@@ -41,7 +41,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "OpenGLLighting.app"
+            BuildableName = "3D_Objects.app"
             BlueprintName = "3D_Objects"
             ReferencedContainer = "container:3D_Objects.xcodeproj">
          </BuildableReference>
@@ -60,7 +60,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "OpenGLLighting.app"
+            BuildableName = "3D_Objects.app"
             BlueprintName = "3D_Objects"
             ReferencedContainer = "container:3D_Objects.xcodeproj">
          </BuildableReference>

@@ -42,6 +42,8 @@ class OpenGLLightingApp : public AppBasic {
 	float mDirectional;
 	
 	bool renderInfoPanel;
+    
+    float       cameraAngle;
 };
 
 void OpenGLLightingApp::prepareSettings( Settings *settings )
@@ -69,6 +71,8 @@ void OpenGLLightingApp::setup()
 	mCounter = 0.0f;
 	mInfoPanel.createTexture();
 	glDisable( GL_TEXTURE_2D );
+    
+    cameraAngle = 0;
 }
 
 void OpenGLLightingApp::resize( ResizeEvent event )
@@ -136,10 +140,18 @@ void OpenGLLightingApp::keyDown( KeyEvent event )
 
 void OpenGLLightingApp::update()
 {
-	if( mIsMouseDown ) // using small number instead of 0.0 because lights go black after a few seconds when going to 0.0f
+	
+    cameraAngle += M_PI/100;
+    
+    if( mIsMouseDown ) // using small number instead of 0.0 because lights go black after a few seconds when going to 0.0f
 		mDirectional -= ( mDirectional - 0.00001f ) * 0.1f;  
 	else 
 		mDirectional -= ( mDirectional - 1.0f ) * 0.1f;
+    
+    //--- Camera Update
+    mCam.lookAt( Vec3f( 0.0f+300*sin(cameraAngle), 0.0f, 0.0f + 300*cos(cameraAngle) ), Vec3f(0.0f, 0.0f, 0.0f) );
+    gl::setMatrices( mCam );
+
 }
 
 void OpenGLLightingApp::draw()
@@ -156,7 +168,7 @@ void OpenGLLightingApp::draw()
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	GLfloat light_position[] = { mMousePos.x, mMousePos.y, 75.0f, mDirectional };
 	glLightfv( GL_LIGHT0, GL_POSITION, light_position );
-
+    /*
 	for( int x=0; x<spheresPerRow; x++ ){
 		float xPer = (float)x/(float)(spheresPerRow - 1 );
 		
@@ -197,6 +209,43 @@ void OpenGLLightingApp::draw()
 			glPopMatrix();
 		}
 	}
+     */
+    
+    glPushMatrix();
+    glTranslatef( 0.0, 0.0, 0.0);
+    
+    if( DIFFUSE ){
+        ci::ColorA color( CM_HSV, 0.0f, 0.0f, 1.0f, 1.0f );
+        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color );
+    } else {
+        glMaterialfv( GL_FRONT, GL_DIFFUSE,	no_mat );
+    }
+    
+    if( AMBIENT )
+        glMaterialfv( GL_FRONT, GL_AMBIENT,	mat_ambient );
+    else
+        glMaterialfv( GL_FRONT, GL_AMBIENT,	no_mat );
+    
+    if( SPECULAR ){
+        glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular );
+        glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess );
+    } else {
+        glMaterialfv( GL_FRONT, GL_SPECULAR, no_mat );
+        glMaterialfv( GL_FRONT, GL_SHININESS, no_shininess );
+    }
+    
+    if( EMISSIVE )
+        glMaterialfv( GL_FRONT, GL_EMISSION, mat_emission );
+    else
+        glMaterialfv( GL_FRONT, GL_EMISSION, no_mat );			
+    
+    gl::drawSphere( Vec3f::zero(), 30, 64 );
+    
+    gl::drawSphere( Vec3f(100, 0, 100), 20, 64 );
+
+    glPopMatrix();
+    
+    //----
 	
 	drawInfoPanel();
 
