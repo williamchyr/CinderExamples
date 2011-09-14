@@ -1,0 +1,116 @@
+// !$*UTF8*$!
+{
+	00BAE6590E7ED9C10018A608 /* OpenGLLightingApp.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1000, 4180}}";
+			sepNavSelRange = "{5220, 0}";
+			sepNavVisRange = "{3944, 1151}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 2B4A8B0013D508B3001EDC1D /* 3D_Objects */;
+		activeTarget = 8D1107260486CEB800E47090 /* 3D_Objects */;
+		codeSenseManager = 2B4A8B1613D508BB001EDC1D /* Code sense */;
+		executables = (
+			2B4A8B0013D508B3001EDC1D /* 3D_Objects */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					822,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 333426880;
+			PBXWorkspaceStateSaveDate = 333426880;
+		};
+		perUserProjectItems = {
+			2B7D76D113E1066C00A07F5B /* PBXBookmark */ = 2B7D76D113E1066C00A07F5B /* PBXBookmark */;
+			2B7D76D213E1066C00A07F5B /* PBXTextBookmark */ = 2B7D76D213E1066C00A07F5B /* PBXTextBookmark */;
+		};
+		sourceControlManager = 2B4A8B1513D508BB001EDC1D /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	2B4A8B0013D508B3001EDC1D /* 3D_Objects */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = 3D_Objects;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	2B4A8B1513D508BB001EDC1D /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	2B4A8B1613D508BB001EDC1D /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	2B7D76D113E1066C00A07F5B /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 00BAE6590E7ED9C10018A608 /* OpenGLLightingApp.cpp */;
+	};
+	2B7D76D213E1066C00A07F5B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00BAE6590E7ED9C10018A608 /* OpenGLLightingApp.cpp */;
+		name = "OpenGLLightingApp.cpp: 204";
+		rLen = 0;
+		rLoc = 5220;
+		rType = 0;
+		vrLen = 1151;
+		vrLoc = 3944;
+	};
+	8D1107260486CEB800E47090 /* 3D_Objects */ = {
+		activeExec = 0;
+		executables = (
+			2B4A8B0013D508B3001EDC1D /* 3D_Objects */,
+		);
+	};
+}
