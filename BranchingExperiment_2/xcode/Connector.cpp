@@ -52,7 +52,7 @@ void Connector::update() {
             mLoc.x = mInitialLoc.x + cos(mAngle)*count;
             mLoc.y = mInitialLoc.y + sin(mAngle)*count;
         } else {
-            mLoc.x = mLoc.x + count;
+            mLoc.x = mInitialLoc.x + count;
             mLoc.y = mLoc.y;
         }
         count++;
@@ -60,6 +60,8 @@ void Connector::update() {
         mContinue = true;
         count++;
     } 
+    
+    
 }
 
 void Connector::draw() {

@@ -1,5 +1,8 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
+#include "cinder/ImageIO.h"
+#include "cinder/Utilities.h"
+
 #include "Branch.h"
 #include <list>
 
@@ -15,27 +18,31 @@ class BranchingExperiment_2App : public AppBasic {
 	void mouseUp( MouseEvent event );
 	void mouseMove( MouseEvent event );
 	void mouseDrag( MouseEvent event );
+    void keyDown( KeyEvent event );
 	void update();
 	void draw();
     
-    Branch mBranch;
+   
     
     list<Branch> mBranches;
     
     bool mouseIsPressed;
     Vec2f mMouseLoc;
+    
+    bool mSaveFrames;
 };
 
 void BranchingExperiment_2App::prepareSettings( Settings *settings )
 {
-    settings->setWindowSize( 1800, 1000 );
+    settings->setWindowSize( 1600, 900 );
 	settings->setFrameRate( 60.0f );
 }
 
 void BranchingExperiment_2App::setup()
 {
-    mBranch.setup( Vec2f(0, getWindowHeight()/2 ) );
+
     mouseIsPressed = false;
+    mSaveFrames = false;
 }
 
 void BranchingExperiment_2App::mouseDown( MouseEvent event )
@@ -59,10 +66,15 @@ void BranchingExperiment_2App::mouseDrag( MouseEvent event )
 	mouseMove( event );
 }
 
-void BranchingExperiment_2App::update()
+void BranchingExperiment_2App::keyDown( KeyEvent event )
 {
-    mBranch.update();
-    
+	if( event.getChar() == 's' ){
+		mSaveFrames = ! mSaveFrames;
+	}
+}
+
+void BranchingExperiment_2App::update()
+{    
     if (mouseIsPressed) {
         Branch subBranch;
         subBranch.setup( mMouseLoc );
@@ -73,14 +85,18 @@ void BranchingExperiment_2App::update()
         p->update();
         
     }
+    
+    if( mSaveFrames ){
+		writeImage( getHomeDirectory() + "branching_" + toString( getElapsedFrames() ) + ".png", copyWindowSurface() );
+        
+        mSaveFrames = false;
+	}
 }
 
 void BranchingExperiment_2App::draw()
 {
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) ); 
-    
-    mBranch.draw();
     
     for (list<Branch>::iterator p = mBranches.begin(); p != mBranches.end(); ++p){
         p->draw();
