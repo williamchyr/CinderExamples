@@ -34,8 +34,11 @@ void Branch::update(){
               
               if (chance < 0.5f ){
                   
+                  //This angle determines the angle of the connector. We make it between -0.5f and 0.5f to keep it straight. (they're multiplied by pi in connector setup)
+                  float angle = Rand::randFloat(-0.5f, 0.5f);
+                  
                   Connector subConnector;
-                  subConnector.setup( p->mEndLoc );
+                  subConnector.setup( p->mEndLoc, angle );
                   mConnectors.push_back( subConnector );
               } else if ( chance > 0.5f && chance < 0.9f ) {
                   mForks.push_back( Fork( p->mEndLoc) );

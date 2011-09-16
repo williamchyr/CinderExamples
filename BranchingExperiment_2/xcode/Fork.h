@@ -23,6 +23,8 @@ class Fork {
     
     Vec2f mLoc;
     
+    float angle0, angle1;
+    
     Connector forkConnector[2];
     
 };

@@ -18,8 +18,13 @@ Fork::Fork() {
 
 Fork::Fork( Vec2f loc ) {
     mLoc = loc;
-    forkConnector[0].setup( mLoc, (0.25f)*M_PI );
-    forkConnector[1].setup( mLoc, (1.75f)*M_PI );
+    
+    //These two angles determine the angle of the fork branches.
+    angle0 = Rand::randFloat(0.0f, 0.5f);
+    angle1 = Rand::randFloat(1.5f, 2.0f);
+    
+    forkConnector[0].setup( mLoc, angle0*M_PI );
+    forkConnector[1].setup( mLoc, angle1*M_PI );
     
 }
 
