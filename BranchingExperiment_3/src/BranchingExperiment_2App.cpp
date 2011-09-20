@@ -27,6 +27,8 @@ class BranchingExperiment_2App : public AppBasic {
     list<Branch> mBranches;
     
     bool mouseIsPressed;
+    
+    Vec2f mMouseVel;
     Vec2f mMouseLoc;
     
     bool mSaveFrames;
@@ -34,7 +36,7 @@ class BranchingExperiment_2App : public AppBasic {
 
 void BranchingExperiment_2App::prepareSettings( Settings *settings )
 {
-    settings->setWindowSize( 800, 450);
+    settings->setWindowSize( 1200, 700);
 	settings->setFrameRate( 60.0f );
 }
 
@@ -59,7 +61,8 @@ void BranchingExperiment_2App::mouseUp( MouseEvent event )
 }
 
 void BranchingExperiment_2App::mouseMove( MouseEvent event )
-{
+{   
+    mMouseVel = ( event.getPos() - mMouseLoc );
 	mMouseLoc = event.getPos();
 }
 
@@ -79,7 +82,7 @@ void BranchingExperiment_2App::update()
 {    
     if (mouseIsPressed) {
         Branch subBranch;
-        subBranch.setup( mMouseLoc );
+        subBranch.setup( mMouseLoc, mMouseVel);
         mBranches.push_back( subBranch );
     }
     

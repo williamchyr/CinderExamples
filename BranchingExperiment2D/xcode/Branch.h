@@ -12,7 +12,7 @@
 #include "cinder/Vector.h"
 #include "cinder/Color.h"
 #include "Node.h"
-#include <list>
+#include <vector>
 
 
 using namespace ci;
@@ -21,19 +21,23 @@ class Branch {
  public:
     
     Branch();
-    void setup( Vec2f loc);
+    void setup( Vec2f loc, int numberOfNodes);
     void update();
     void draw();
     
-    int numberOfNodes;
+    int mNumberOfNodes;
     
     Vec2f mLoc;
     
-    std::list<Node>	mNodes;
+    std::vector<Node>	mNodes;
     
-    std::list<Branch> subBranches;
+    std::vector<Branch> subBranches;
     
     float r, g, b;
+    
+    Vec2f mEndLoc;
+    
+    bool mGrow;
 };
 
 #endif

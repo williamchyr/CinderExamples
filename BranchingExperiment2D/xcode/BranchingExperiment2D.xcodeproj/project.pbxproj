@@ -21,6 +21,7 @@
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		53E3CDFC0E86099300238D2B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E3CDFB0E86099300238D2B /* Carbon.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		DF91704B14226D5A00748148 /* Fork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF91704914226D5A00748148 /* Fork.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		53E3CDFB0E86099300238D2B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BranchingExperiment2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BranchingExperiment2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF91704914226D5A00748148 /* Fork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fork.cpp; sourceTree = "<group>"; };
+		DF91704A14226D5A00748148 /* Fork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fork.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				00BAE6590E7ED9C10018A608 /* BranchingExperiment2DApp.cpp */,
+				DF91704914226D5A00748148 /* Fork.cpp */,
 				2B9F265A14214B4300788B01 /* Node.cpp */,
 				2B9F265E142151D800788B01 /* Branch.cpp */,
 			);
@@ -132,6 +136,7 @@
 				32CA4F630368D1EE00C91783 /* BranchingExperiment2D_Prefix.pch */,
 				2B9F265D14214B5A00788B01 /* Node.h */,
 				2B9F2660142151E400788B01 /* Branch.h */,
+				DF91704A14226D5A00748148 /* Fork.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				00BAE65A0E7ED9C10018A608 /* BranchingExperiment2DApp.cpp in Sources */,
 				2B9F265B14214B4300788B01 /* Node.cpp in Sources */,
 				2B9F265F142151D800788B01 /* Branch.cpp in Sources */,
+				DF91704B14226D5A00748148 /* Fork.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

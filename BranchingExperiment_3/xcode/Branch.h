@@ -18,15 +18,19 @@ using namespace std;
 
 class Branch {
  public:
-    void setup( Vec2f loc );
+    void setup( Vec2f loc, Vec2f vel);
     void update();
     void draw();
     
     Vec2f mLoc;
+    Vec2f mVel;
     
     Connector startConnector;
     
     list<Connector> mConnectors;
     list<Fork> mForks;
+    
+    
+    float startAngle;
 
 };

@@ -11,15 +11,23 @@
 #include "cinder/Rand.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Color.h"
+#include "cinder/CinderMath.h"
 #include "Branch.h"
 
 
 using namespace ci;
 
-void Branch::setup( Vec2f loc ) {
+void Branch::setup( Vec2f loc, Vec2f vel ) {
     mLoc = loc;
+    mVel = vel;
+    mVel.safeNormalize();
     
-    startConnector.setup( mLoc, Rand::randFloat(-0.5f*M_PI, 0.5f*M_PI) , false);
+    startAngle = acos(mVel.x);
+    if (mVel.y < 0) {
+        startAngle = startAngle * -1;
+    }
+    
+    startConnector.setup( mLoc, startAngle, false);
     mConnectors.push_back( startConnector );
 }
 
@@ -39,7 +47,7 @@ void Branch::update(){
                   if (chance < 0.5f ){
                       
                       //This angle determines the angle of the connector. We make it between -0.5f*M_PI and 0.5f*M_PI to keep it straight. )
-                      float angle = Rand::randFloat(-0.5f*M_PI, 0.5f*M_PI);
+                      float angle = Rand::randFloat(-0.5f*M_PI + startAngle, 0.5f*M_PI + startAngle);
                       
                       Connector subConnector;
                       subConnector.setup( p->mEndLoc, angle, false);
@@ -86,7 +94,7 @@ void Branch::update(){
                 
                 if (chance1 < 0.8f ){
                     
-                    float angle = Rand::randFloat(-0.5f*M_PI, 0.5f*M_PI);
+                    float angle = Rand::randFloat(-0.5f*M_PI + startAngle, 0.5f*M_PI + startAngle);
                     Connector subConnector;
                     subConnector.setup( p->forkConnector[1].mEndLoc, angle, false  );
                     mConnectors.push_back( subConnector );

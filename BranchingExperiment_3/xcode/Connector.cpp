@@ -35,7 +35,7 @@ void Connector::setup( Vec2f loc, float angle, bool isFork ) {
     
     mInitialLoc = loc;
     mAngle = angle;
-    length = Rand::randInt(30, 70);
+    length = Rand::randInt(60, 100);
     mEndLoc = Vec2f( loc.x + cos(mAngle)*length, loc.y + sin(mAngle)*length);
     
     mLoc = mInitialLoc;
@@ -76,6 +76,8 @@ void Connector::update() {
 }
 
 void Connector::draw() {
+    
+    glLineWidth(3);
     
     if (mIsFork){
         gl::drawLine ( mInitialLoc, mLoc );
