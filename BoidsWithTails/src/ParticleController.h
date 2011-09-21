@@ -15,9 +15,9 @@ public:
 	ParticleController();
     
 	//void applyForce( float zoneRadius, float lowerThresh, float higherThresh, float attractStrength, float repelStrength, float orientStrength );
-    void applyForce(float zoneRadius, float lowerThresh, float higherThresh, float attractStrength, float repelStrength);
+    void applyForce(float zoneRadius, float lowerThresh, float higherThresh, float attractStrength, float repelStrength, float alignStrength );
 	void pullToCenter( const ci::Vec3f &center );
-	void update();
+	void update(bool flatten);
 	void draw();
 	void addParticles( int amt );
 	

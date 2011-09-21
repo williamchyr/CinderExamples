@@ -32,7 +32,11 @@ class BoidsWithTailsApp : public AppBasic {
     // BOIDS Settings
     float mZoneRadius;
     float mLowerThresh, mHigherThresh;
-    float mAttractStrength, mRepelStrength;
+    float mAttractStrength, mRepelStrength, mAlignStrength;
+    
+    bool				mCentralGravity;
+	bool				mFlatten;
+    
     
     ParticleController mParticleController;
     
@@ -47,24 +51,7 @@ void BoidsWithTailsApp::prepareSettings( Settings *settings )
 
 void BoidsWithTailsApp::setup()
 {
-    /*
-    glEnable (GL_BLEND);
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    */
-    
     gl::enableAlphaBlending();
-    // SETUP CAMERA
-	mCameraDistance = 500.0f;
-	mEye			= Vec3f( 0.0f, 0.0f, mCameraDistance );
-	mCenter			= Vec3f::zero();
-	mUp				= Vec3f::yAxis();
-	mCam.setPerspective( 75.0f, getWindowAspectRatio(), 5.0f, 2000.0f );
-    
-    // SETUP PARAMS
-	mParams = params::InterfaceGl( "Control Panel", Vec2i( 200, 300 ) );
-	mParams.addParam( "Scene Rotation", &mSceneRotation, "opened=1" );
-	mParams.addSeparator();
-	mParams.addParam( "Eye Distance", &mCameraDistance, "min=50.0 max=1000.0 step=50.0 keyIncr=s keyDecr=w" );
     
     // BOIDS Settings
     mZoneRadius = 80.0f;
@@ -72,10 +59,42 @@ void BoidsWithTailsApp::setup()
     mHigherThresh = 0.75f;
     mAttractStrength = 0.005f;
     mRepelStrength = 0.01f;
+    mAlignStrength = 0.01f;
+    
+    mCentralGravity = true;
+	mFlatten		= false;
+    
+    
+    // SETUP CAMERA
+	mCameraDistance = 500.0f;
+	mEye			= Vec3f( 0.0f, 0.0f, mCameraDistance );
+	mCenter			= Vec3f::zero();
+	mUp				= Vec3f::yAxis();
+	mCam.setPerspective( 75.0f, getWindowAspectRatio(), 5.0f, 3000.0f );
+    
+    // SETUP PARAMS
+	mParams = params::InterfaceGl( "Control Panel", Vec2i( 200, 300 ) );
+	mParams.addParam( "Scene Rotation", &mSceneRotation, "opened=1" );
+	mParams.addSeparator();
+	mParams.addParam( "Eye Distance", &mCameraDistance, "min=50.0 max=1200.0 step=50.0 keyIncr=s keyDecr=w" );
+    mParams.addParam( "Center Gravity", &mCentralGravity, "keyIncr=g" );
+	mParams.addParam( "Flatten", &mFlatten, "keyIncr=f" );
+	mParams.addSeparator();
+	mParams.addParam( "Zone Radius", &mZoneRadius, "min=10.0 max=100.0 step=1.0 keyIncr=z keyDecr=Z" );
+	mParams.addParam( "Lower Thresh", &mLowerThresh, "min=0.025 max=1.0 step=0.025 keyIncr=l keyDecr=L" );
+	mParams.addParam( "Higher Thresh", &mHigherThresh, "min=0.025 max=1.0 step=0.025 keyIncr=h keyDecr=H" );
+	mParams.addSeparator();
+	mParams.addParam( "Attract Strength", &mAttractStrength, "min=0.001 max=0.1 step=0.001 keyIncr=a keyDecr=A" );
+	mParams.addParam( "Repel Strength", &mRepelStrength, "min=0.001 max=0.1 step=0.001 keyIncr=r keyDecr=R" );
+	mParams.addParam( "Orient Strength", &mAlignStrength, "min=0.001 max=0.1 step=0.001 keyIncr=o keyDecr=O" );
+	
+
+    
+ 
     
     mParticleController.addParticles(100);    
     
-    mSaveFrames = true;
+    mSaveFrames = false;
 }
 
 void BoidsWithTailsApp::mouseDown( MouseEvent event )
@@ -90,9 +109,9 @@ void BoidsWithTailsApp::update()
 	gl::setMatrices( mCam );
 	gl::rotate( mSceneRotation );
     
-    mParticleController.applyForce(mZoneRadius, mLowerThresh, mHigherThresh, mAttractStrength, mRepelStrength);
+    mParticleController.applyForce(mZoneRadius, mLowerThresh, mHigherThresh, mAttractStrength, mRepelStrength, mAlignStrength);
     mParticleController.pullToCenter( mCenter );
-    mParticleController.update();
+    mParticleController.update( mFlatten );
     
 }
 
@@ -107,7 +126,7 @@ void BoidsWithTailsApp::draw()
     mParticleController.draw();
     
     // DRAW PARAMS WINDOW
-	//params::InterfaceGl::draw();
+	params::InterfaceGl::draw();
     
     if( mSaveFrames ){
 		writeImage( getHomeDirectory() + "flocking/image_" + toString( getElapsedFrames() ) + ".png", copyWindowSurface() );

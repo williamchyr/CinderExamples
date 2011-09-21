@@ -18,7 +18,7 @@ ParticleController::ParticleController()
 {
 }
 
-void ParticleController::applyForce( float zoneRadius, float lowerThresh, float higherThresh, float attractStrength, float repelStrength)
+void ParticleController::applyForce( float zoneRadius, float lowerThresh, float higherThresh, float attractStrength, float repelStrength, float alignStrength )
 {   
     float twoPI = M_PI * 2.0f;
     
@@ -39,6 +39,14 @@ void ParticleController::applyForce( float zoneRadius, float lowerThresh, float 
                     
 					p1->mAcc += dir;
 					p2->mAcc -= dir;
+				} else if( percent < higherThresh ){	// Alignment
+					float threshDelta		= higherThresh - lowerThresh;
+					float adjustedPercent	= ( percent - lowerThresh )/threshDelta;
+					float F					= ( 1.0 - ( cos( adjustedPercent * twoPI ) * -0.5f + 0.5f ) ) * alignStrength;
+					
+					p1->mAcc += p2->mVelNormal * F;
+					p2->mAcc += p1->mVelNormal * F;
+                    
 				} else {								// Cohesion
                     float threshDelta		= 1.0f - higherThresh;
                     float adjustedPercent	= ( percent - higherThresh )/threshDelta;
@@ -64,10 +72,10 @@ void ParticleController::pullToCenter( const ci::Vec3f &center )
 }
 
 
-void ParticleController::update()
+void ParticleController::update(bool flatten)
 {
 	for( list<Particle>::iterator p = mParticles.begin(); p != mParticles.end(); ++p ){
-		p->update();
+		p->update( flatten);
 	}
 }
 

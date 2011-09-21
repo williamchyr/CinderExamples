@@ -47,7 +47,7 @@ void Particle::pullToCenter( const Vec3f &center )
 	}
 }	
 
-void Particle::update() 
+void Particle::update(bool flatten) 
 {
     mLoc.x = mLoc.x - 5; //This is to shift the tail so that the sphere is in the middle
     
@@ -75,7 +75,7 @@ void Particle::update()
     }
     
     for (int i = 0; i < tailAlpha.size(); i++) {
-        tailAlpha[i] = tailAlpha[i] - 0.03f;
+        tailAlpha[i] = tailAlpha[i] - 0.02f;
     }
     
     
@@ -86,9 +86,24 @@ void Particle::update()
     
     mAge++;
     
+    mVelNormal = mVel.normalized();
     mVel = mVel + mAcc;
     mLoc = mLoc + mVel;
     
+    if( flatten )
+		mLoc.z = 0.0f;
+    
+}
+
+void Particle::limitSpeed()
+{
+	float vLengthSqrd = mVel.lengthSquared();
+	if( vLengthSqrd > mMaxSpeedSqrd ){
+		mVel = mVelNormal * mMaxSpeed;
+		
+	} else if( vLengthSqrd < mMinSpeedSqrd ){
+		mVel = mVelNormal * mMinSpeed;
+	}
 }
 
 void Particle::draw() 
@@ -98,7 +113,7 @@ void Particle::draw()
     
     glLineWidth(20);
     
-    
+    /*
     glBegin(GL_QUAD_STRIP);
 
     for (int i = 0; i < tailPositions.size(); i++) {
@@ -106,5 +121,5 @@ void Particle::draw()
         glVertex3f ( tailPositions[i] );
     }
     glEnd();
-   
+ */  
 }
