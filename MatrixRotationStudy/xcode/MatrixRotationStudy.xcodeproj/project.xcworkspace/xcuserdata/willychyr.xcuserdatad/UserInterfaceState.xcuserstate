@@ -3314,9 +3314,9 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>346382532.19840503</real>
-		<string>{3694, 1276}</string>
-		<string>{3173, 0}</string>
+		<real>346404051.84365898</real>
+		<string>{2513, 1282}</string>
+		<string>{3948, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -3670,7 +3670,7 @@
 				<integer>315</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>346382514.17050201</real>
+			<real>346403230.25644302</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -3681,7 +3681,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 8:21 PM</string>
+		<string>Today at 2:07 AM</string>
 		<integer>234</integer>
 		<string>MatrixRotationStudy</string>
 		<dict>
@@ -3836,7 +3836,7 @@
 		<string>IDEWorkspaceTabController_E657E4A7-EDCC-4EA1-92EF-A48710825A69</string>
 		<string>IDEWindowToolbarIsVisible</string>
 		<string>IDEWindowTabBarIsVisible</string>
-		<string>{{219, 95}, {1405, 952}}</string>
+		<string>{{26, 52}, {1770, 998}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4384,9 +4384,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>346382532.20226502</real>
-		<string>{3694, 1276}</string>
-		<string>{3173, 0}</string>
+		<real>346404051.96299398</real>
+		<string>{2513, 1282}</string>
+		<string>{3948, 0}</string>
 		<string>MatrixRotationStudyApp::setup()</string>
 		<dict>
 			<key>$class</key>
@@ -4420,7 +4420,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1145, 739}}</string>
+		<string>{{0, 0}, {1510, 785}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4579,7 +4579,7 @@
 			</array>
 		</dict>
 		<string>VariablesView</string>
-		<real>573</real>
+		<real>756</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4610,7 +4610,7 @@
 			</array>
 		</dict>
 		<string>ConsoleArea</string>
-		<real>571</real>
+		<real>753</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4679,7 +4679,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>573</real>
+		<real>756</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4709,7 +4709,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>571</real>
+		<real>753</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4801,7 +4801,7 @@
 			</array>
 		</dict>
 		<string>IDEEditor</string>
-		<real>761</real>
+		<real>807</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5105,7 +5105,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>652</real>
+		<real>698</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5165,7 +5165,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>449</integer>
+					<integer>451</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -5270,7 +5270,7 @@
 		<string>IDECollapsedTypes</string>
 		<string>IDERecentFilteringEnabled</string>
 		<string>IDECollapsedGroups</string>
-		<string>{{0, 0}, {259, 810}}</string>
+		<string>{{0, 0}, {259, 856}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5402,7 +5402,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 0}, {259, 832}}</string>
+		<string>{{0, 0}, {259, 878}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5610,7 +5610,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>1145</real>
+		<real>1510</real>
 		<dict>
 			<key>$class</key>
 			<dict>

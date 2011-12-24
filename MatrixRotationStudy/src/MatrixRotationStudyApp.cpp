@@ -24,21 +24,48 @@ public:
     
     void printMatrix( Matrix44 <float> m);
     
-    // GET END POSITION IN WORLD COORDINATES (TO BE PASSED TO NEXT OBJECT)
-    Vec3f getWorldEndPosition( Vec3f localStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition );
+    // LOCAL TO WORLD COORDINATES (TO BE PASSED TO NEXT OBJECT)
+    // using two angles
+    //Vec3f getWorldPosition( Vec3f worldStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition );
+
+    // using one matrix and one angle
+    Vec3f getWorldPosition( Vec3f worldStartPosition, Matrix44<float> totalLocalRotation, Vec3f localEndPosition );
+    
     
     // GET TOTAL ROTATION MATRIX (TO BE PASSED TO NEXT OBJECT)
-    Matrix44<float> getTotalLocalRotation( Vec3f localStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition );
+    //using two angles
+    Matrix44<float> getTotalLocalRotation( Vec3f localBasisRotation, Vec3f localObjectRotation );
     
-    Vec3f mLocalStartPosition; //where the local basis translate to
-    Vec3f mLocalBasisRotation; //How the local basis is rotated
-    Vec3f mLocalObjectRotation; //how the object is rotated in relation to the local basis
+    //using one matrix and one angle
+    Matrix44<float> getTotalLocalRotation( Matrix44<float> previousRotation, Vec3f localObjectRotation );
     
-    Vec3f mLocalEndPosition;
-    Vec3f mWorldEndPosition;
+    //
+    Vec3f mWorldStartPosition0; //where the local basis translate to
+    Vec3f mLocalBasisRotation0; //How the local basis is rotated
+    Vec3f mLocalObjectRotation0; //how the object is rotated in relation to the local basis
     
-    Matrix44 <float> mTotalRotationMatrix;
-
+    Vec3f mLocalEndPosition0;
+    Vec3f mWorldEndPosition0;
+    
+    Matrix44 <float> mTotalRotationMatrix0;
+    
+    // 
+    Matrix44 <float> mPreviousRotationMatrix1;
+    Matrix44 <float> mTotalRotationMatrix1;
+    
+    Vec3f mWorldStartPosition1;
+    Vec3f mLocalObjectRotation1;
+    Vec3f mLocalEndPosition1;
+    Vec3f mWorldEndPosition1;
+    
+    //
+    Matrix44 <float> mPreviousRotationMatrix2;
+    Matrix44 <float> mTotalRotationMatrix2;
+    
+    Vec3f mWorldStartPosition2;
+    Vec3f mLocalObjectRotation2;
+    Vec3f mLocalEndPosition2;
+    Vec3f mWorldEndPosition2;
     
     // PARAMS
 	params::InterfaceGl	mParams;
@@ -85,7 +112,6 @@ void MatrixRotationStudyApp::setup()
     mParams.addParam( "Y Angle", &yAngle, "min=0.0 max=360.0 step=5.0 keyIncr=t keyDecr=g" );
     mParams.addParam( "Z Angle", &zAngle, "min=0.0 max=360.0 step=5.0 keyIncr=y keyDecr=h" );
     
-    
     mDirectional = 1.0f;
     
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
@@ -99,17 +125,32 @@ void MatrixRotationStudyApp::setup()
     
     // Set up coordinates
     
-    mLocalStartPosition.set(100.0f, 100.0f, 0.0f);
-    mLocalBasisRotation.set(20.0f, 30.0f, 45.0f);
-    mLocalObjectRotation.set(40.0f, 130.0f, 60.0f);
-    mLocalEndPosition.set( 0.0f, 300.0f, 0.0f); //I know what the local end position is because I'm drawing a cylinder of length 300. 
+    mWorldStartPosition0.set(100.0f, 100.0f, 0.0f);
+    mLocalBasisRotation0.set(20.0f, 30.0f, 45.0f);
+    mLocalObjectRotation0.set(0.0f, 30.0f, 30.0f);
+    mLocalEndPosition0.set( 0.0f, 300.0f, 0.0f); //I know what the local end position is because I'm drawing a cylinder of length 300. 
     
-    mWorldEndPosition = getWorldEndPosition( mLocalStartPosition, mLocalBasisRotation, mLocalObjectRotation, mLocalEndPosition );
+    mTotalRotationMatrix0 = getTotalLocalRotation( mLocalBasisRotation0, mLocalObjectRotation0 );
+    mWorldEndPosition0 = getWorldPosition( mWorldStartPosition0, mTotalRotationMatrix0, mLocalEndPosition0 );
     
-    mTotalRotationMatrix = getTotalLocalRotation( mLocalStartPosition, mLocalBasisRotation, mLocalObjectRotation, mLocalEndPosition );
+    // first transfer
+    mWorldStartPosition1 = mWorldEndPosition0;
+    mLocalObjectRotation1 = mLocalObjectRotation0;
+    mPreviousRotationMatrix1 = mTotalRotationMatrix0;
+    mLocalEndPosition1.set( 0.0f, 300.0f, 0.0f);
     
-    mShowCube = true;
+    mTotalRotationMatrix1 = getTotalLocalRotation( mPreviousRotationMatrix1, mLocalObjectRotation1 ); 
+    mWorldEndPosition1 = getWorldPosition( mWorldStartPosition1, mTotalRotationMatrix1, mLocalEndPosition1);
+ 
+    // Second transfer
+    mWorldStartPosition2 = mWorldEndPosition1;
+    mLocalObjectRotation2 = mLocalObjectRotation0;
+    mPreviousRotationMatrix2 = mTotalRotationMatrix1;
+    mLocalEndPosition2.set( 0.0f, 300.0f, 0.0f);
     
+    mTotalRotationMatrix2 = getTotalLocalRotation( mPreviousRotationMatrix2, mLocalObjectRotation2 ); 
+    mWorldEndPosition2 = getWorldPosition( mWorldStartPosition2, mTotalRotationMatrix2, mLocalEndPosition2);
+
 }
 
 void MatrixRotationStudyApp::mouseDown( MouseEvent event )
@@ -125,7 +166,6 @@ void MatrixRotationStudyApp::keyDown( KeyEvent event )
 
 void MatrixRotationStudyApp::update()
 {
-    
     //UPDATE CAMERA
     
     mEye = Vec3f( 0.0f, 0.0f, mCameraDistance );
@@ -146,32 +186,36 @@ void MatrixRotationStudyApp::printMatrix( Matrix44 <float> m)
     cout << toString(m.m30) + " " + toString(m.m31) + " " + toString(m.m32) + " " + toString(m.m33) +  "\n";
     cout << "\n";
 }   
-
-Vec3f MatrixRotationStudyApp::getWorldEndPosition( Vec3f localStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition )
+/*
+Vec3f MatrixRotationStudyApp::getWorldPosition( Vec3f worldStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition )
 {
     Matrix44 <float> m4;
     Vec3f worldEndPosition;
     
-    m4 = m4.createTranslation( localStartPosition );
-    printMatrix( m4 );
+    m4 = m4.createTranslation( worldStartPosition );
     
     m4.rotate( Vec3f(( localBasisRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );
-    printMatrix( m4 );
-    
     m4.rotate( Vec3f(0.0f, ( localBasisRotation.y/180.0f)*M_PI, 0.0f) );
-    printMatrix( m4 );
-    
     m4.rotate( Vec3f(0.0f, 0.0f, ( localBasisRotation.z/180.0f)*M_PI) );
-    printMatrix( m4 );
     
     m4.rotate( Vec3f(( localObjectRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );
-    printMatrix( m4 );
-    
     m4.rotate( Vec3f(0.0f, ( localObjectRotation.y/180.0f)*M_PI, 0.0f) );
-    printMatrix( m4 );
-    
     m4.rotate( Vec3f(0.0f, 0.0f, ( localObjectRotation.z/180.0f)*M_PI) );
-    printMatrix( m4 );
+    
+    worldEndPosition = m4.transformPoint( localEndPosition );
+    cout << "translate and rotate: " + toString( worldEndPosition .x) + ", " + toString( worldEndPosition .y) + ", " + toString( worldEndPosition .z) + "\n";
+    
+    return worldEndPosition;
+}
+*/
+
+Vec3f MatrixRotationStudyApp::getWorldPosition( Vec3f worldStartPosition, Matrix44<float> totalLocalRotation, Vec3f localEndPosition )
+{
+    Matrix44 <float> m4;
+    Vec3f worldEndPosition;
+    
+    m4 = m4.createTranslation( worldStartPosition );
+    m4 = m4*totalLocalRotation;
     
     worldEndPosition = m4.transformPoint( localEndPosition );
     cout << "translate and rotate: " + toString( worldEndPosition .x) + ", " + toString( worldEndPosition .y) + ", " + toString( worldEndPosition .z) + "\n";
@@ -179,37 +223,41 @@ Vec3f MatrixRotationStudyApp::getWorldEndPosition( Vec3f localStartPosition, Vec
     return worldEndPosition;
 }
 
-Matrix44<float> MatrixRotationStudyApp::getTotalLocalRotation( Vec3f localStartPosition, Vec3f localBasisRotation, Vec3f localObjectRotation, Vec3f localEndPosition )
+Matrix44<float> MatrixRotationStudyApp::getTotalLocalRotation( Vec3f localBasisRotation, Vec3f localObjectRotation)
 {
     Matrix44 <float> m4;
-    Vec3f totalLocalRotation;
     
     m4.setToIdentity();
     
     m4.rotate( Vec3f(( localBasisRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );
-    printMatrix( m4 );
-    
-    m4.rotate( Vec3f(0.0f, ( localBasisRotation.y/180.0f)*M_PI, 0.0f) );
-    printMatrix( m4 );
-    
+    m4.rotate( Vec3f(0.0f, ( localBasisRotation.y/180.0f)*M_PI, 0.0f) );    
     m4.rotate( Vec3f(0.0f, 0.0f, ( localBasisRotation.z/180.0f)*M_PI) );
-    printMatrix( m4 );
     
-    m4.rotate( Vec3f(( localObjectRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );
-    printMatrix( m4 );
-    
-    m4.rotate( Vec3f(0.0f, ( localObjectRotation.y/180.0f)*M_PI, 0.0f) );
-    printMatrix( m4 );
-    
+    m4.rotate( Vec3f(( localObjectRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );    
+    m4.rotate( Vec3f(0.0f, ( localObjectRotation.y/180.0f)*M_PI, 0.0f) );    
     m4.rotate( Vec3f(0.0f, 0.0f, ( localObjectRotation.z/180.0f)*M_PI) );
-    printMatrix( m4 );
     
     return m4;
     
 }
 
-void MatrixRotationStudyApp::draw()
+Matrix44<float> MatrixRotationStudyApp::getTotalLocalRotation( Matrix44<float> previousRotation, Vec3f localObjectRotation )
 {
+    Matrix44 <float> m4;
+    
+    m4.setToIdentity();
+    m4 = m4*previousRotation;
+    
+    m4.rotate( Vec3f(( localObjectRotation.x/180.0f)*M_PI, 0.0f, 0.0f) );    
+    m4.rotate( Vec3f(0.0f, ( localObjectRotation.y/180.0f)*M_PI, 0.0f) );    
+    m4.rotate( Vec3f(0.0f, 0.0f, ( localObjectRotation.z/180.0f)*M_PI) );
+    
+    return m4;
+}
+
+void MatrixRotationStudyApp::draw()
+{   
+    // LIGHTING
 	glEnable( GL_LIGHTING );
 	glEnable( GL_LIGHT0 );
     glEnable( GL_LIGHT1 );
@@ -237,69 +285,45 @@ void MatrixRotationStudyApp::draw()
     glMaterialfv( GL_FRONT, GL_DIFFUSE,	colorZ );
     gl::drawLine( Vec3f(0.0f, 0.0f, -500.0f), Vec3f(0.0f, 0.0f, 500.0f) );
     
-    // DRAW CUBES
+    
+    // DRAW OBJECT 0
+    ci::ColorA color0( CM_RGB, 1.0f, 1.0f, 1.0f, 1.0f );
+    glMaterialfv( GL_FRONT, GL_DIFFUSE,	color0 );
     
     gl::pushMatrices();
-    gl::translate( mLocalStartPosition );
-    gl::rotate( mLocalBasisRotation );
-    
-        // DRAW AXIS
-        ci::ColorA colorX1( CM_RGB, 1.0f, 0.0f, 1.0f, 1.0f );
-        glMaterialfv( GL_FRONT, GL_DIFFUSE,	colorX1 );
-        gl::drawLine( Vec3f(-500.0f, 0.0f, 0.0f), Vec3f(500.0f, 0.0f, 0.0f) );
-        
-        ci::ColorA colorY1( CM_RGB, 1.0f, 1.0f, 0.0f, 1.0f );
-        glMaterialfv( GL_FRONT, GL_DIFFUSE,	colorY1 );
-        gl::drawLine( Vec3f(0.0f, -500.0f, 0.0f), Vec3f(0.0f, 500.0f, 0.0f) );
-        
-        ci::ColorA colorZ1( CM_RGB, 0.0f, 1.0f, 1.0f, 1.0f );
-        glMaterialfv( GL_FRONT, GL_DIFFUSE,	colorZ1 );
-        gl::drawLine( Vec3f(0.0f, 0.0f, -500.0f), Vec3f(0.0f, 0.0f, 500.0f) );
-        
-        ci::ColorA color1( CM_RGB, 1.0f, 1.0f, 1.0f, 1.0f );
-        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color1 );
+    gl::translate( mWorldStartPosition0 );
+    gl::rotate( mLocalBasisRotation0 );
         
         gl::pushMatrices();
-        gl::rotate( mLocalObjectRotation ); 
+        gl::rotate( mLocalObjectRotation0 ); 
             gl::drawCylinder( 20.0f, 20.0f, 300.0f );
         gl::popMatrices();
     
     gl::popMatrices();
 
-    /*
+    // DRAW OBJECT 1
+    ci::ColorA color1( CM_RGB, 1.0f, 0.0f, 1.0f, 1.0f );
+    glMaterialfv( GL_FRONT, GL_DIFFUSE,	color1 );
+    
     gl::pushMatrices();
-    gl::translate( mWorldEndPosition );
-    gl::rotate( mLocalBasisRotation );
-    gl::rotate( mLocalObjectRotation );
-    if (!mShowCube) {
-        ci::ColorA color2( CM_RGB, 1.0f, 1.0f, 0.0f, 1.0f );
-        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color2 );
-        gl::drawCube( Vec3f(0.0f, 0.0f, 0.0f), Vec3f(30.0f, 30.0f, 30.0f) );
-        
-        gl::drawCylinder( 10.0f, 10.0f, 200.0f );
-    } 
+    gl::translate( mWorldStartPosition1 );
+    gl::multModelView(  mTotalRotationMatrix1 );
+        gl::drawCube( Vec3f(0.0f, 0.0f, 0.0f), Vec3f(25.0f, 25.0f, 25.0f) );
+        gl::drawCylinder( 10.0f, 10.0f, 300.0f );                  
     gl::popMatrices();
-    */
-    if (!mShowCube) {
-        gl::pushMatrices();
-        gl::translate( mWorldEndPosition );
-        gl::multModelView(  mTotalRotationMatrix );
-        
-            ci::ColorA color3( CM_RGB, 1.0f, 0.0f, 1.0f, 1.0f );
-            glMaterialfv( GL_FRONT, GL_DIFFUSE,	color3 );
-            gl::drawCube( Vec3f(0.0f, 0.0f, 0.0f), Vec3f(30.0f, 30.0f, 30.0f) );
-            
-            gl::drawCylinder( 10.0f, 10.0f, 300.0f );
-            
-                        
-        gl::pushMatrices();
-        gl::rotate( Vec3f(0.0f, 0.0f, 30.0f) );
-            ci::ColorA color4( CM_RGB, 0.0f, 1.0f, 1.0f, 1.0f );
-            glMaterialfv( GL_FRONT, GL_DIFFUSE,	color4 );
-            gl::drawCylinder( 10.0f, 10.0f, 200.0f );
-        gl::popMatrices();
-        gl::popMatrices();
-    } 
+    
+    // DRAW OBJECT 2
+    ci::ColorA color2( CM_RGB, 1.0f, 1.0f, 0.0f, 1.0f );
+    glMaterialfv( GL_FRONT, GL_DIFFUSE,	color2 );
+    
+    gl::pushMatrices();
+    gl::translate( mWorldStartPosition2 );
+    gl::multModelView(  mTotalRotationMatrix2 );
+        gl::drawCube( Vec3f(0.0f, 0.0f, 0.0f), Vec3f(25.0f, 25.0f, 25.0f) );
+        gl::drawCylinder( 10.0f, 10.0f, 300.0f );                  
+    gl::popMatrices();
+
+    
     // DRAW PARAMS WINDOW
 	params::InterfaceGl::draw();
 }
