@@ -45,7 +45,7 @@ void Particle::pullToCenter( const Vec3f &center )
 {
 	Vec3f dirToCenter = mPos - center;
 	float distToCenter = dirToCenter.length();
-	float distThresh = 200.0f;
+	float distThresh = 400.0f;
 	
 	if( distToCenter > distThresh ){
 		dirToCenter.normalize();
@@ -157,7 +157,13 @@ void Particle::drawRibbon()
     glBegin(GL_QUAD_STRIP);
     
     for (int i = 0; i < ribbonPositions.size(); i++) {
-        gl::color( ColorA( r, g, b, ribbonAlpha[i] ) );
+        //gl::color( ColorA( r, g, b, ribbonAlpha[i] ) );
+        ci::ColorA color( CM_RGB, r, g, b, ribbonAlpha[i] );
+        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color );
+        
+        ci::ColorA color1( CM_RGB, g, b, r, ribbonAlpha[i] );
+        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color1 );
+        
         glVertex3f ( ribbonPositions[i] );
     }
     glEnd();

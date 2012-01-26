@@ -40,6 +40,10 @@ class FlockingApp : public AppBasic {
 	bool				mFlatten;
 	bool				mSaveFrames;
 	bool				mIsRenderingPrint;
+    
+    //--- LIGHTS
+    bool DIFFUSE;
+	float mDirectional;
 };
 
 void FlockingApp::prepareSettings( Settings *settings )
@@ -51,21 +55,24 @@ void FlockingApp::prepareSettings( Settings *settings )
 void FlockingApp::setup()
 {	
 	
+    gl::enableDepthWrite();
+	gl::enableDepthRead();
     gl::enableAlphaBlending();
+    glDisable( GL_TEXTURE_2D );
     
     Rand::randomize();
 	
 	mCenter			= Vec3f( getWindowWidth() * 0.5f, getWindowHeight() * 0.5f, 0.0f );
 	mCentralGravity = true;
 	mFlatten		= false;
-	mSaveFrames		= true;
+	mSaveFrames		= false;
 	mIsRenderingPrint = false;
 	mZoneRadius		= 80.0f;
-	mLowerThresh	= 0.21f;
+	mLowerThresh	= 0.41f;
 	mHigherThresh	= 0.7f;
-	mAttractStrength	= 0.01f;
-	mRepelStrength		= 0.004f;
-	mOrientStrength		= 0.01f;
+	mAttractStrength	= 0.001f;
+	mRepelStrength		= 0.050f;
+	mOrientStrength		= 0.001f;
 	
 	// SETUP CAMERA
 	mCameraDistance = 300.0f;
@@ -78,7 +85,7 @@ void FlockingApp::setup()
 	mParams = params::InterfaceGl( "Flocking", Vec2i( 200, 310 ) );
 	mParams.addParam( "Scene Rotation", &mSceneRotation, "opened=1" );
 	mParams.addSeparator();
-	mParams.addParam( "Eye Distance", &mCameraDistance, "min=100.0 max=2000.0 step=1.0 keyIncr=s keyDecr=w" );
+	mParams.addParam( "Eye Distance", &mCameraDistance, "min=100.0 max=2000.0 step=10.0 keyIncr=s keyDecr=w" );
 	mParams.addParam( "Center Gravity", &mCentralGravity, "keyIncr=g" );
 	mParams.addParam( "Flatten", &mFlatten, "keyIncr=f" );
 	mParams.addSeparator();
@@ -94,6 +101,11 @@ void FlockingApp::setup()
 	mParticleController.addParticles( NUM_INITIAL_PARTICLES );
 	//mParticleController.addPredators( NUM_INITIAL_PREDATORS );
     mParticleController.addStationaryPredators();
+    
+    // LIGHTS
+    DIFFUSE		= true;
+    mDirectional = 1.0f;
+    
 }
 
 void FlockingApp::keyDown( KeyEvent event )
@@ -124,10 +136,28 @@ void FlockingApp::update()
 void FlockingApp::draw()
 {	
 	gl::clear( Color( 0, 0, 0 ), true );
-	gl::enableDepthRead();
-	gl::enableDepthWrite();
+    
+    glEnable( GL_LIGHTING );
+	glEnable( GL_LIGHT0 );
+    glEnable( GL_LIGHT1 );
+	
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	GLfloat light_position[] = { 500.0f, 500.0f, 275.0f, mDirectional };
+	glLightfv( GL_LIGHT0, GL_POSITION, light_position );
+    
+    GLfloat light_position1[] = { -800.0f, -400.0f, -600.0f, mDirectional };
+    glLightfv( GL_LIGHT1, GL_POSITION, light_position1 );
+    
+    if( DIFFUSE ){
+        ci::ColorA color( CM_RGB, 0.2f, 0.7f, 1.0f, 1.0f );
+        glMaterialfv( GL_FRONT, GL_DIFFUSE,	color );
+        
+        ci::ColorA color1( CM_RGB, 1.0f, 1.0f, 1.0f, 1.0f );
+        glMaterialfv( GL_FRONT, GL_DIFFUSE, color1 );
+    }
+    
 
-	gl::color( ColorA( 1.0f, 1.0f, 1.0f, 1.0f ) );
+	//gl::color( ColorA( 1.0f, 1.0f, 1.0f, 1.0f ) );
 	mParticleController.draw();
 	
 	if( mSaveFrames ){

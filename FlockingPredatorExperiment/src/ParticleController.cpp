@@ -79,7 +79,8 @@ void ParticleController::applyForceToParticles( float zoneRadius, float lowerThr
 		float predatorZoneRadiusSqrd = zoneRadius * zoneRadius * 5.0f;
 		for( list<Predator>::iterator predator = mPredators.begin(); predator != mPredators.end(); ++predator ) {
 
-			Vec3f dir = p1->mPos - predator->mPos[0];
+			//Vec3f dir = predator->mPos[0] - p1->mPos;
+            Vec3f dir = p1->mPos - predator->mPos[0];
 			float distSqrd = dir.lengthSquared();
             
             /*
@@ -133,14 +134,17 @@ void ParticleController::applyForceToPredators( float zoneRadius, float lowerThr
 					P1->mAcc += dir;
 					P2->mAcc -= dir;
 				} else if( per < higherThresh ){	// Alignment
-					float threshDelta	= higherThresh - lowerThresh;
+					/*
+                    float threshDelta	= higherThresh - lowerThresh;
 					float adjPer		= ( per - lowerThresh )/threshDelta;
 					float F				= ( 1.0f - cos( adjPer * twoPI ) * -0.5f + 0.5f ) * 0.3f;
 			
 					P1->mAcc += P2->mVelNormal * F;
 					P2->mAcc += P1->mVelNormal * F;
+                     */
 					
 				} else {							// Cohesion
+                    /*
 					float threshDelta	= 1.0f - higherThresh;
 					float adjPer		= ( per - higherThresh )/threshDelta;
 					float F				= ( 1.0 - ( cos( adjPer * twoPI ) * -0.5f + 0.5f ) ) * 0.1f;
@@ -150,6 +154,7 @@ void ParticleController::applyForceToPredators( float zoneRadius, float lowerThr
 			
 					P1->mAcc -= dir;
 					P2->mAcc += dir;
+                     */
 				}
 			}
 		}
@@ -187,13 +192,12 @@ void ParticleController::update( bool flatten )
 void ParticleController::draw()
 {	
 	// DRAW PREDATOR ARROWS
-    /*
 	for( list<Predator>::iterator p = mPredators.begin(); p != mPredators.end(); ++p ){
 		float hungerColor = 1.0f - p->mHunger;
 		gl::color( ColorA( 1.0f, hungerColor, hungerColor, 1.0f ) );
 		p->draw();
 	}
-	*/
+
     
 	// DRAW PARTICLE ARROWS
     /*
@@ -222,9 +226,23 @@ void ParticleController::addPredators( int amt )
 
 void ParticleController::addStationaryPredators()
 {
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 5; i++){
     
         Vec3f pos = Vec3f(-40 + i*20.0f, 0.0f, 0.0f);
+        Vec3f vel = Vec3f(0.0f, 0.0f, 0.0f);
+        mPredators.push_back( Predator( pos, vel ) );
+    }
+    
+    for (int i = 0; i < 5; i++){
+        
+        Vec3f pos = Vec3f(20.0f, 0.0f + i*20.0f, 100.0f);
+        Vec3f vel = Vec3f(0.0f, 0.0f, 0.0f);
+        mPredators.push_back( Predator( pos, vel ) );
+    }
+    
+    for (int i = 0; i < 5; i++){
+        
+        Vec3f pos = Vec3f(20.0f, -100.0f, 0.0f + i*20.0f);
         Vec3f vel = Vec3f(0.0f, 0.0f, 0.0f);
         mPredators.push_back( Predator( pos, vel ) );
     }

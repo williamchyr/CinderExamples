@@ -31,7 +31,7 @@ Predator::Predator( Vec3f pos, Vec3f vel )
 
 	mColor			= ColorA( 1.0f, 0.0f, 0.0f, 1.0f );
 	
-	mDecay			= 0.99f;
+	mDecay			= 0.59f;
 	mRadius			= 2.0f;
 	mLength			= 25.0f;
 	mHunger			= 1.0f;
@@ -44,10 +44,10 @@ void Predator::pullToCenter( const Vec3f &center )
 {
 	Vec3f dirToCenter	= mPos[0] - center;
 	float distToCenter	= dirToCenter.length();
-	float maxDistance	= 600.0f;
+	float maxDistance	= 150.0f;
 	
 	if( distToCenter > maxDistance ){
-		float pullStrength = 0.0001f;
+		float pullStrength = 0.051f;
 		mVel -= dirToCenter.normalized() * ( ( distToCenter - maxDistance ) * pullStrength );
 	}
 }	
@@ -57,7 +57,7 @@ void Predator::update( bool flatten )
 	//mVel += mAcc;
 	
 	if( flatten ) mAcc.z = 0.0f;
-	//mVel += mAcc;
+	mVel += mAcc;
 	mVelNormal = mVel.safeNormalized();
 	
 	limitSpeed();
@@ -66,7 +66,7 @@ void Predator::update( bool flatten )
 	for( int i=mLen-1; i>0; i-- ){
 		mPos[i] = mPos[i-1];
 	}
-	mPos[0] += mVel;
+	//mPos[0] += mVel;
 	
 	if( flatten )
 		mPos[0].z = 0.0f;
@@ -85,7 +85,7 @@ void Predator::update( bool flatten )
 
 void Predator::limitSpeed()
 {
-	float maxSpeed = mMaxSpeed + mHunger * 3.0f;
+	float maxSpeed = mMaxSpeed + mHunger * 2.0f;
 	float maxSpeedSqrd = maxSpeed * maxSpeed;
 	float vLengthSqrd = mVel.lengthSquared();
 	if( vLengthSqrd > maxSpeedSqrd ){
